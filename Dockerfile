@@ -1,9 +1,10 @@
-FROM ruby:2.7.1-alpine
+FROM ruby:2.6.6-alpine
 
 ENV BUNDLER_VERSION=2.0.2
 
 RUN apk add --update --no-cache \
       binutils-gold \
+      build-deps \
       build-base \
       curl \
       file \
@@ -30,7 +31,7 @@ RUN apk add --update --no-cache \
       zip && rm -rf /var/lib/apk/*
 
 RUN echo "precedence  2a04:4e42::0/32  5" >> /etc/gai.conf
-RUN gem install bundler -v 2.0.2
+RUN gem install bundler
 
 ENV APP_HOME /app/wreeto
 WORKDIR $APP_HOME
