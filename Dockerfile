@@ -2,7 +2,7 @@ FROM ruby:2.6.6-alpine
 
 ENV BUNDLER_VERSION=2.0.2
 
-RUN apk add --update --no-cache \
+RUN apk add --update --no-cache --virtual build-deps \
       binutils-gold \
       build-base \
       curl \
@@ -37,6 +37,7 @@ WORKDIR $APP_HOME
 COPY Gemfile Gemfile.lock $APP_HOME/
 RUN bundle config build.nokogiri --use-system-libraries
 RUN bundle check || bundle install --jobs 20 --retry 2
+RUN apk del build-deps
 
 COPY . $APP_HOME/
 COPY config/database.docker.yml $APP_HOME/config/database.yml
