@@ -31,7 +31,7 @@ gem 'recaptcha', '5.5.0'
 gem 'foreman', '~> 0.87.1'
 
 # Workaround for Docker arm build error https://github.com/codahale/bcrypt-ruby/issues/201
-gem 'bgcrypt', '3.1.12'
+gem 'bcrypt', '3.1.12'
 
 # Auth
 gem 'devise', '4.7.1'
