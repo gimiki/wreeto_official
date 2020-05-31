@@ -4,7 +4,6 @@ ENV BUNDLER_VERSION=2.0.2
 
 RUN apk add --update --no-cache \
       binutils-gold \
-      build-deps \
       build-base \
       curl \
       file \
@@ -37,7 +36,7 @@ ENV APP_HOME /app/wreeto
 WORKDIR $APP_HOME
 COPY Gemfile Gemfile.lock $APP_HOME/
 RUN bundle config build.nokogiri --use-system-libraries
-RUN bundle check || bundle install --jobs 20 --retry 5
+RUN bundle check || bundle install --jobs 20 --retry 2
 
 COPY . $APP_HOME/
 COPY config/database.docker.yml $APP_HOME/config/database.yml
